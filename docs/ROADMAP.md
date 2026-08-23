@@ -93,8 +93,8 @@ Make the application useful every day.
 * [x] Tags
 * [x] Subtasks
 * [x] Quick task creation
-* [ ] Keyboard shortcuts
-* [ ] Command palette
+* [x] Keyboard shortcuts
+* [x] Command palette
 
 #### Exit criteria
 

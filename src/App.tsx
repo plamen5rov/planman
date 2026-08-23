@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BottomNav } from './components/BottomNav'
+import { CommandPalette } from './components/CommandPalette'
 import { SidebarNav } from './components/SidebarNav'
 import { NAV_ITEMS } from './components/navItems'
 import { Projects } from './components/Projects'
@@ -10,6 +11,7 @@ import { Today } from './components/Today'
 function App() {
   const [activeId, setActiveId] = useState(NAV_ITEMS[0]!.id)
   const [quickAddOpen, setQuickAddOpen] = useState(false)
+  const [cmdOpen, setCmdOpen] = useState(false)
   const active = NAV_ITEMS.find((item) => item.id === activeId) ?? NAV_ITEMS[0]!
 
   useEffect(() => {
@@ -17,6 +19,22 @@ function App() {
       if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
         e.preventDefault()
         setQuickAddOpen(true)
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault()
+        setCmdOpen(true)
+      }
+      if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+        const num = parseInt(e.key, 10)
+        if (num >= 1 && num <= NAV_ITEMS.length) {
+          const target = document.activeElement
+          if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
+          setActiveId(NAV_ITEMS[num - 1]!.id)
+        }
+      }
+      if (e.key === 'Escape') {
+        setQuickAddOpen(false)
+        setCmdOpen(false)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -45,6 +63,11 @@ function App() {
       </div>
       <BottomNav activeId={activeId} onSelect={setActiveId} />
       <QuickAdd open={quickAddOpen} onClose={() => setQuickAddOpen(false)} />
+      <CommandPalette
+        open={cmdOpen}
+        onClose={() => setCmdOpen(false)}
+        onNavigate={setActiveId}
+      />
     </div>
   )
 }
