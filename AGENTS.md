@@ -5,10 +5,11 @@ non-obvious, must-not-forget context.
 
 ## Current state
 
-- Phase 0 — Project Foundation. App skeleton exists: Vite + React +
-  TypeScript, oxlint, Vitest smoke test; lint/typecheck/test/build verified.
-- Next task: responsive layout foundation, then Phase 1 (data model +
-  repository layer + local persistence).
+- Phase 0 — Project Foundation: complete (skeleton, layout foundation,
+  testing, verified build).
+- Phase 1 — Core Project Management is starting. Next task: establish the
+  data model, then the repository/data-access layer and local persistence
+  (Dexie).
 
 See [TASKS.md](docs/TASKS.md) and [ROADMAP.md](docs/ROADMAP.md).
 
@@ -59,6 +60,9 @@ Desktop and mobile are the same application, not separate codebases.
    [ERRORLOG.md](docs/ERRORLOG.md).
 6. Before every `git add` / push, review `.gitignore` and update it for any
    new build output, generated files, or secret/env files.
+7. After every major step/phase, keep the dev server running
+   (`npm run dev`, <http://localhost:5173/>) and pause for the user's visual
+   check before moving on.
 
 ## Markup hygiene
 

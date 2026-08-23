@@ -2,6 +2,7 @@
   --text: #4b4650;
   --text-h: #08060d;
   --bg: #ffffff;
+  --bg-raised: #faf9fb;
   --border: #e5e4e7;
   --accent: #7c3aed;
 
@@ -19,6 +20,7 @@
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --bg: #16171d;
+    --bg-raised: #1d1e25;
     --border: #2e303a;
     --accent: #c084fc;
   }
@@ -42,8 +44,10 @@ body {
   display: flex;
   align-items: center;
   padding: 0 16px;
+  padding-top: env(safe-area-inset-top);
   min-height: 48px;
   border-bottom: 1px solid var(--border);
+  background: var(--bg-raised);
 }
 
 .app-header h1 {
@@ -53,11 +57,110 @@ body {
   color: var(--text-h);
 }
 
+.app-body {
+  flex: 1;
+  display: flex;
+  align-self: stretch;
+}
+
+.sidebar-nav {
+  display: none;
+}
+
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg-raised);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav ul,
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.bottom-nav li {
+  flex: 1;
+}
+
+.bottom-nav button {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.bottom-nav button[aria-current='page'] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .app-main {
   flex: 1;
   padding: 24px 16px;
-  padding-bottom: calc(24px + env(safe-area-inset-bottom));
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
+}
+
+.app-main h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--text-h);
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+
+  .sidebar-nav {
+    display: block;
+    width: 200px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: var(--bg-raised);
+    padding-top: 8px;
+  }
+
+  .sidebar-nav ul {
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 8px;
+  }
+
+  .sidebar-nav button {
+    width: 100%;
+    min-height: 40px;
+    text-align: left;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+    padding: 0 12px;
+  }
+
+  .sidebar-nav button:hover {
+    background: var(--border);
+  }
+
+  .sidebar-nav button[aria-current='page'] {
+    color: var(--accent);
+    font-weight: 600;
+    background: var(--border);
+  }
+
+  .app-main {
+    padding: 32px 24px;
+  }
 }

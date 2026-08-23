@@ -27,7 +27,7 @@ Establish a clean development environment.
 * [x] Establish testing
 * [x] Establish development/build commands
 * [x] Create initial application shell
-* [ ] Create responsive layout foundation
+* [x] Create responsive layout foundation
 
 #### Exit criteria
 

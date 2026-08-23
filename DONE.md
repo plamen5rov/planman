@@ -2,6 +2,15 @@
 
 Last updated: 2026-08-23
 
+- [2026-08-23] Responsive layout foundation: desktop sidebar nav + mobile
+  bottom tab bar (5 sections), section switching with aria-current, test
+  cleanup in setup file, added @testing-library/user-event; Phase 0 exit
+  criteria met, phase advanced to Phase 1 (files modified: src/App.tsx,
+  src/components/navItems.ts, src/components/SidebarNav.tsx,
+  src/components/BottomNav.tsx, src/styles/app.css, src/test/setup.ts,
+  src/App.test.tsx, package.json, package-lock.json, docs/TASKS.md,
+  docs/ROADMAP.md, AGENTS.md)
+
 - [2026-08-23] Harden .gitignore (env/secret files, OS files) and add a
   standing rule to AGENTS.md: review/update .gitignore before every git
   add/push (files modified: .gitignore, AGENTS.md, DONE.md)

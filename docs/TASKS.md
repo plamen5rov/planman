@@ -26,7 +26,7 @@ It is intentionally different from ROADMAP.md.
 
 ## Current Phase
 
-**Phase 0 — Project Foundation.**
+**Phase 1 — Core Project Management.**
 
 See:
 
@@ -55,7 +55,7 @@ See:
 ### P1 — High Priority
 
 * [x] Create initial application shell
-* [ ] Create responsive layout foundation
+* [x] Create responsive layout foundation
 * [ ] Establish data model
 * [ ] Establish repository/data-access layer
 * [x] Add basic tests
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Create responsive layout foundation
+Establish data model
 ```
 
 ---
@@ -95,8 +95,10 @@ Create responsive layout foundation
 
 Move completed tasks here temporarily if they provide useful project history.
 
-* [x] 2026-08-23 — Phase 0 skeleton: Vite + React + TypeScript app, oxlint,
-  Vitest smoke test, verified lint/typecheck/test/build
+* [x] 2026-08-23 — Responsive layout foundation: desktop sidebar nav +
+  mobile bottom tab bar, section switching (files modified: src/App.tsx,
+  src/components/*, src/styles/app.css, src/test/setup.ts,
+  package.json)
 
 ---
 
