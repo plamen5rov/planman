@@ -89,7 +89,7 @@ Make the application useful every day.
 * [x] Upcoming tasks
 * [x] Search
 * [x] Filtering
-* [ ] Sorting
+* [x] Sorting
 * [ ] Tags
 * [ ] Subtasks
 * [ ] Quick task creation

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { DexieTaskRepository } from '../repositories/task-repository'
 import { db } from '../db/database'
 import type { Task, TaskStatus, TaskPriority } from '../types/domain'
@@ -20,6 +20,23 @@ const PRIORITY_OPTIONS: Array<{ value: TaskPriority | 'all'; label: string }> = 
   { value: 'none', label: 'None' },
 ]
 
+const PRIORITY_ORDER: Record<TaskPriority, number> = {
+  high: 0, medium: 1, low: 2, none: 3,
+}
+
+const STATUS_ORDER: Record<TaskStatus, number> = {
+  doing: 0, todo: 1, done: 2,
+}
+
+type SortKey = 'created' | 'priority' | 'status' | 'due'
+
+const SORT_OPTIONS: Array<{ value: SortKey; label: string }> = [
+  { value: 'created', label: 'Created' },
+  { value: 'priority', label: 'Priority' },
+  { value: 'status', label: 'Status' },
+  { value: 'due', label: 'Due date' },
+]
+
 export function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTaskTitle, setNewTaskTitle] = useState('')
@@ -28,6 +45,7 @@ export function Tasks() {
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState<TaskStatus | 'all'>('all')
   const [priorityFilter, setPriorityFilter] = useState<TaskPriority | 'all'>('all')
+  const [sortKey, setSortKey] = useState<SortKey>('created')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -90,12 +108,24 @@ export function Tasks() {
 
   const cancelEdit = () => setEditingId(null)
 
-  const filtered = tasks.filter(t => {
-    const matchesSearch = !searchQuery || t.title.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesStatus = statusFilter === 'all' || t.status === statusFilter
-    const matchesPriority = priorityFilter === 'all' || t.priority === priorityFilter
-    return matchesSearch && matchesStatus && matchesPriority
-  })
+  const filtered = useMemo(() => {
+    const result = tasks.filter(t => {
+      const matchesSearch = !searchQuery || t.title.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesStatus = statusFilter === 'all' || t.status === statusFilter
+      const matchesPriority = priorityFilter === 'all' || t.priority === priorityFilter
+      return matchesSearch && matchesStatus && matchesPriority
+    })
+    result.sort((a, b) => {
+      switch (sortKey) {
+        case 'priority': return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
+        case 'status': return STATUS_ORDER[a.status] - STATUS_ORDER[b.status]
+        case 'due': return (a.dueDate ?? 'z').localeCompare(b.dueDate ?? 'z')
+        case 'created':
+        default: return b.createdAt.localeCompare(a.createdAt)
+      }
+    })
+    return result
+  }, [tasks, searchQuery, statusFilter, priorityFilter, sortKey])
 
   if (loading) return <p className="caption">Loading...</p>
   if (error) return <p className="caption">{error}</p>
@@ -123,6 +153,14 @@ export function Tasks() {
           onChange={e => setPriorityFilter(e.target.value as TaskPriority | 'all')}
         >
           {PRIORITY_OPTIONS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          value={sortKey}
+          onChange={e => setSortKey(e.target.value as SortKey)}
+        >
+          {SORT_OPTIONS.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
