@@ -83,10 +83,10 @@ The application works as a basic personal task manager without a network connect
 
 Make the application useful every day.
 
-* [ ] Today view
-* [ ] Overdue tasks
-* [ ] Today's tasks
-* [ ] Upcoming tasks
+* [x] Today view
+* [x] Overdue tasks
+* [x] Today's tasks
+* [x] Upcoming tasks
 * [ ] Search
 * [ ] Filtering
 * [ ] Sorting

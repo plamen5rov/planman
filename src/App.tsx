@@ -4,12 +4,15 @@ import { SidebarNav } from './components/SidebarNav'
 import { NAV_ITEMS } from './components/navItems'
 import { Projects } from './components/Projects'
 import { Tasks } from './components/Tasks'
+import { Today } from './components/Today'
 
 function App() {
   const [activeId, setActiveId] = useState(NAV_ITEMS[0]!.id)
   const active = NAV_ITEMS.find((item) => item.id === activeId) ?? NAV_ITEMS[0]!
 
-  const section = active.id === 'projects'
+  const section = active.id === 'today'
+    ? <Today />
+    : active.id === 'projects'
     ? <Projects />
     : active.id === 'tasks'
     ? <Tasks />
