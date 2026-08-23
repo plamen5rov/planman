@@ -2,11 +2,12 @@
 
 ## Purpose
 
-This document defines mobile-specific UX, behavior and testing for the Project Manager PWA.
+This document defines mobile-specific UX, behavior and testing for the
+Project Manager PWA.
 
 Primary target:
 
-**iPhone 15 Pro Max**
+**iPhone 15 Pro Max.**
 
 The mobile application is the same PWA/codebase as the desktop application.
 
@@ -14,7 +15,7 @@ There must NOT be a separate iOS codebase.
 
 ---
 
-# 1. Mobile Goals
+## 1. Mobile Goals
 
 The mobile experience should be:
 
@@ -28,7 +29,7 @@ The mobile experience should be:
 
 ---
 
-# 2. Mobile Is a First-Class Platform
+## 2. Mobile Is a First-Class Platform
 
 Mobile must not be treated as a final polishing step.
 
@@ -43,11 +44,11 @@ The underlying functionality should remain equivalent.
 
 ---
 
-# 3. Development Testing Levels
+## 3. Development Testing Levels
 
 Mobile development uses three levels of testing.
 
-## Level 1 — Desktop Browser Emulation
+### Level 1 — Desktop Browser Emulation
 
 Use Chrome/Chromium DevTools on Linux.
 
@@ -71,7 +72,7 @@ Do NOT consider emulation equivalent to a real iPhone.
 
 ---
 
-## Level 2 — Real iPhone Development Testing
+### Level 2 — Real iPhone Development Testing
 
 The iPhone should connect to the same local network as the Linux development machine.
 
@@ -91,7 +92,7 @@ Open that URL in iPhone Safari.
 
 This is the preferred rapid real-device testing method.
 
-### Development loop
+#### Development loop
 
 ```text
 OpenCode
@@ -111,7 +112,7 @@ OpenCode fixes
 
 ---
 
-## Level 3 — HTTPS PWA Testing
+### Level 3 — HTTPS PWA Testing
 
 Some PWA/browser capabilities require a secure context.
 
@@ -130,7 +131,7 @@ The HTTPS version should be treated as the final PWA testing environment.
 
 ---
 
-# 4. Safari Testing
+## 4. Safari Testing
 
 Test the application in normal Safari before installing it.
 
@@ -148,7 +149,7 @@ Check:
 
 ---
 
-# 5. Installed PWA Testing
+## 5. Installed PWA Testing
 
 After the PWA is deployed through HTTPS:
 
@@ -165,7 +166,7 @@ Do not assume Safari behavior and installed-PWA behavior are identical.
 
 ---
 
-# 6. Mobile Navigation
+## 6. Mobile Navigation
 
 Candidate structure:
 
@@ -182,7 +183,7 @@ The final navigation should be based on actual usage.
 
 ---
 
-# 7. Touch Targets
+## 7. Touch Targets
 
 Interactive elements should be comfortably tappable.
 
@@ -197,7 +198,7 @@ Do not rely on color alone.
 
 ---
 
-# 8. Today View
+## 8. Today View
 
 Today should be the primary mobile workspace.
 
@@ -212,7 +213,7 @@ Avoid overwhelming the user with information.
 
 ---
 
-# 9. Quick Add
+## 9. Quick Add
 
 Task creation should require minimal interaction.
 
@@ -230,7 +231,7 @@ Optional fields should not obstruct basic creation.
 
 ---
 
-# 10. Task Details
+## 10. Task Details
 
 Potential fields:
 
@@ -249,7 +250,7 @@ Do not display everything simultaneously if it harms usability.
 
 ---
 
-# 11. Gestures
+## 11. Gestures
 
 Potential gestures:
 
@@ -263,7 +264,7 @@ Every important gesture-driven action must have a visible alternative.
 
 ---
 
-# 12. Forms and Keyboard
+## 12. Forms and Keyboard
 
 Forms must account for the iPhone software keyboard.
 
@@ -281,7 +282,7 @@ Important controls must not become inaccessible behind the keyboard.
 
 ---
 
-# 13. Safe Areas
+## 13. Safe Areas
 
 The application must account for modern iPhone safe areas.
 
@@ -297,11 +298,11 @@ Do not place important controls directly against screen edges.
 
 ---
 
-# 14. Portrait and Landscape
+## 14. Portrait and Landscape
 
 Primary orientation:
 
-**Portrait**
+**Portrait.**
 
 Landscape must still remain usable.
 
@@ -314,7 +315,7 @@ Do not allow:
 
 ---
 
-# 15. Offline Testing
+## 15. Offline Testing
 
 Test at least:
 
@@ -360,7 +361,7 @@ Synchronization is handled separately.
 
 ---
 
-# 16. Mobile Performance
+## 16. Mobile Performance
 
 Test on the actual iPhone.
 
@@ -377,7 +378,7 @@ Watch for:
 
 ---
 
-# 17. Data Persistence
+## 17. Data Persistence
 
 Verify that data survives:
 
@@ -391,7 +392,7 @@ Do not assume service-worker caching means application data is persistent.
 
 ---
 
-# 18. Update Testing
+## 18. Update Testing
 
 When a new version is deployed:
 
@@ -405,7 +406,7 @@ Never solve cache-update problems by deleting user data.
 
 ---
 
-# 19. Real Device Test Record
+## 19. Real Device Test Record
 
 When useful, record significant mobile testing here:
 
@@ -424,12 +425,14 @@ Do not record personal/private information.
 
 ---
 
-# 20. Definition of Mobile Done
+## 20. Definition of Mobile Done
 
-A mobile feature is considered complete when appropriate testing has been performed on:
+A mobile feature is considered complete when appropriate testing has been
+performed on:
 
 * Desktop responsive emulation
 * Real iPhone Safari
 * Installed iPhone PWA where PWA behavior is relevant
 
-If real-device testing has not been performed, explicitly state that it remains pending.
+If real-device testing has not been performed, explicitly state that it
+remains pending.

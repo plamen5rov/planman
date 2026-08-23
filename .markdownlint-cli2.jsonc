@@ -1,0 +1,14 @@
+{
+  "config": {
+    // ASCII diagrams and tables cannot be wrapped at 80 characters.
+    "MD013": {
+      "code_blocks": false,
+      "tables": false
+    },
+    // Repeated subsection names (e.g. "Goal", "Exit criteria") are allowed
+    // when they belong to different parent sections.
+    "MD024": {
+      "siblings_only": true
+    }
+  }
+}

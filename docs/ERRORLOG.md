@@ -2,15 +2,17 @@
 
 ## Purpose
 
-Record significant errors, bugs, failed approaches and architectural mistakes so that they are not repeatedly rediscovered.
+Record significant errors, bugs, failed approaches and architectural
+mistakes so that they are not repeatedly rediscovered.
 
 This document is part of the development memory of the project.
 
-OpenCode should consult this document before attempting to solve recurring or unusual problems.
+OpenCode should consult this document before attempting to solve recurring
+or unusual problems.
 
 ---
 
-# Rules
+## Rules
 
 When recording an error:
 
@@ -25,7 +27,7 @@ When recording an error:
 
 ---
 
-# Entry Format
+## Entry Format
 
 ```text
 ## ERR-001 — Short description
@@ -56,38 +58,38 @@ Relevant files, components or documentation.
 
 ---
 
-# Errors
+## Errors
 
 <!-- New entries go below this line. -->
 
-## ERR-001 — Example Entry
+### ERR-001 — Example Entry
 
 Date: YYYY-MM-DD
 Status: Example / Remove
 
-### Symptom
+#### Symptom
 
 Example error description.
 
-### Cause
+#### Cause
 
 Example cause.
 
-### Solution
+#### Solution
 
 Example solution.
 
-### Prevention
+#### Prevention
 
 Example prevention.
 
-### Related Files
+#### Related Files
 
 Example files.
 
 ---
 
-# Important Lessons
+## Important Lessons
 
 This section may contain short, general lessons extracted from individual errors.
 

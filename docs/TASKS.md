@@ -11,7 +11,7 @@ It is intentionally different from ROADMAP.md.
 
 ---
 
-# Rules
+## Rules
 
 1. Keep this file focused on current work.
 2. Do not duplicate the entire roadmap here.
@@ -24,9 +24,9 @@ It is intentionally different from ROADMAP.md.
 
 ---
 
-# Current Phase
+## Current Phase
 
-**Phase 0 — Project Foundation**
+**Phase 0 — Project Foundation.**
 
 See:
 
@@ -34,7 +34,7 @@ See:
 
 ---
 
-# Priority Legend
+## Priority Legend
 
 * **P0** — Critical / blocking
 * **P1** — High priority
@@ -43,16 +43,16 @@ See:
 
 ---
 
-# Current Tasks
+## Current Tasks
 
-## P0 — Blocking
+### P0 — Blocking
 
 * [ ] Initialize project repository
 * [ ] Create React + TypeScript + Vite application
 * [ ] Establish basic folder structure
 * [ ] Verify development/build process
 
-## P1 — High Priority
+### P1 — High Priority
 
 * [ ] Create initial application shell
 * [ ] Create responsive layout foundation
@@ -61,7 +61,7 @@ See:
 * [ ] Add basic tests
 * [ ] Implement local persistence
 
-## P2 — Normal
+### P2 — Normal
 
 * [ ] Establish initial visual design
 * [ ] Define typography
@@ -69,7 +69,7 @@ See:
 * [ ] Define basic component conventions
 * [ ] Document architecture decisions
 
-## P3 — Later
+### P3 — Later
 
 * [ ] Evaluate PWA tooling
 * [ ] Evaluate Dexie configuration
@@ -77,7 +77,7 @@ See:
 
 ---
 
-# Active Work
+## Active Work
 
 Only tasks currently being worked on should appear here.
 
@@ -91,7 +91,7 @@ Initialize project repository
 
 ---
 
-# Recently Completed
+## Recently Completed
 
 Move completed tasks here temporarily if they provide useful project history.
 
@@ -99,7 +99,7 @@ Move completed tasks here temporarily if they provide useful project history.
 
 ---
 
-# Blocked
+## Blocked
 
 Record tasks that cannot proceed.
 
@@ -109,7 +109,7 @@ None
 
 ---
 
-# Decisions Needed
+## Decisions Needed
 
 Record questions that require a deliberate architectural/product decision.
 
@@ -120,8 +120,9 @@ Record questions that require a deliberate architectural/product decision.
 
 ---
 
-# Notes
+## Notes
 
-Keep temporary development notes here only when they are directly relevant to current tasks.
+Keep temporary development notes here only when they are directly relevant
+to current tasks.
 
 Long-term information belongs in the appropriate documentation file.

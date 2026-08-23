@@ -2,11 +2,12 @@
 
 ## Purpose
 
-This document describes the technical architecture of the Personal Project Manager PWA.
+This document describes the technical architecture of the Personal Project
+Manager PWA.
 
 ---
 
-# 1. Core Principle
+## 1. Core Principle
 
 There is ONE application.
 
@@ -24,7 +25,7 @@ There must not be separate desktop and mobile applications.
 
 ---
 
-# 2. High-Level Architecture
+## 2. High-Level Architecture
 
 Initial architecture:
 
@@ -57,7 +58,7 @@ Future synchronization may extend this:
 
 ---
 
-# 3. Frontend
+## 3. Frontend
 
 Initial technology:
 
@@ -75,7 +76,7 @@ Business rules should remain outside presentation components where practical.
 
 ---
 
-# 4. Data Access
+## 4. Data Access
 
 Use:
 
@@ -95,15 +96,15 @@ The repository layer allows the storage technology to change later.
 
 ---
 
-# 5. Initial Database
+## 5. Initial Database
 
 Use:
 
-**IndexedDB**
+**IndexedDB.**
 
 Recommended abstraction:
 
-**Dexie**
+**Dexie.**
 
 Reasons:
 
@@ -121,7 +122,7 @@ SQLite/WASM is a possible future option but is not currently required.
 
 ---
 
-# 6. PWA Architecture
+## 6. PWA Architecture
 
 Conceptually:
 
@@ -149,9 +150,9 @@ Both are required for a robust offline-first application.
 
 ---
 
-# 7. Development Environments
+## 7. Development Environments
 
-## Desktop
+### Desktop
 
 ```text
 Linux
@@ -163,7 +164,7 @@ localhost
 Chromium/Chrome
 ```
 
-## iPhone development
+### iPhone development
 
 ```text
 Linux
@@ -175,7 +176,7 @@ LAN address
 iPhone Safari
 ```
 
-## PWA testing
+### PWA testing
 
 ```text
 Build/deploy
@@ -191,7 +192,7 @@ Installed PWA
 
 ---
 
-# 8. Mobile Development Does Not Require a Second Build
+## 8. Mobile Development Does Not Require a Second Build
 
 The same source code is used for:
 
@@ -211,7 +212,7 @@ Platform-specific behavior should be handled through:
 
 ---
 
-# 9. Repository Layer
+## 9. Repository Layer
 
 Conceptual interfaces:
 
@@ -237,7 +238,7 @@ The exact interfaces should evolve with the domain model.
 
 ---
 
-# 10. Domain Entities
+## 10. Domain Entities
 
 Initial candidates:
 
@@ -253,7 +254,7 @@ Do not create unnecessary abstractions before the domain requires them.
 
 ---
 
-# 11. Entity Identity
+## 11. Entity Identity
 
 Persistent entities should use stable unique IDs.
 
@@ -273,7 +274,7 @@ IDs must remain stable across:
 
 ---
 
-# 12. Timestamps
+## 12. Timestamps
 
 Mutable persistent entities should generally include:
 
@@ -294,7 +295,7 @@ Do not add synchronization fields prematurely.
 
 ---
 
-# 13. Application State
+## 13. Application State
 
 Separate:
 
@@ -317,7 +318,7 @@ Do not persist temporary UI state unless useful.
 
 ---
 
-# 14. Offline Architecture
+## 14. Offline Architecture
 
 Offline support has two independent components:
 
@@ -333,7 +334,7 @@ A service worker alone is not sufficient.
 
 ---
 
-# 15. Mobile Testing Architecture
+## 15. Mobile Testing Architecture
 
 Mobile development has three levels:
 
@@ -351,7 +352,7 @@ Do not skip real-device testing for mobile-sensitive functionality.
 
 ---
 
-# 16. LAN Development
+## 16. LAN Development
 
 The Vite development server should be capable of being exposed to the local network.
 
@@ -361,23 +362,25 @@ Typical command:
 npm run dev -- --host 0.0.0.0
 ```
 
-The iPhone can then access the development server using the Linux machine's LAN IP.
+The iPhone can then access the development server using the Linux machine's
+LAN IP.
 
 The exact IP must not be hard-coded into the application.
 
 ---
 
-# 17. HTTPS
+## 17. HTTPS
 
 HTTPS should be used for final PWA testing.
 
-Secure-context-dependent functionality should not be considered fully tested using ordinary HTTP LAN development.
+Secure-context-dependent functionality should not be considered fully tested
+using ordinary HTTP LAN development.
 
 Development HTTP and production/preview HTTPS serve different purposes.
 
 ---
 
-# 18. Synchronization Boundary
+## 18. Synchronization Boundary
 
 Synchronization belongs below the application UI.
 
@@ -401,9 +404,10 @@ See:
 
 ---
 
-# 19. Export/Import
+## 19. Export/Import
 
-Export/import should operate through the repository/data layer rather than directly manipulating UI state.
+Export/import should operate through the repository/data layer rather than
+directly manipulating UI state.
 
 The exported format must be versioned.
 
@@ -421,7 +425,7 @@ Example:
 
 ---
 
-# 20. Suggested Folder Structure
+## 20. Suggested Folder Structure
 
 ```text
 project-root/
@@ -459,7 +463,7 @@ Directories should only be created when needed.
 
 ---
 
-# 21. Testing
+## 21. Testing
 
 Test at multiple levels:
 
@@ -492,7 +496,7 @@ Important workflows include:
 
 ---
 
-# 22. Architecture Change Rules
+## 22. Architecture Change Rules
 
 Before changing foundational technology:
 
@@ -510,7 +514,7 @@ Do not replace working technology merely because another technology is fashionab
 
 ---
 
-# 23. Current Architecture
+## 23. Current Architecture
 
 Current intended architecture:
 
@@ -544,7 +548,7 @@ Current primary mobile test device:
 
 ---
 
-# 24. Related Documentation
+## 24. Related Documentation
 
 * [ROADMAP.md](ROADMAP.md)
 * [Desktop.md](Desktop.md)

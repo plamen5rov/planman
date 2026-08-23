@@ -2,7 +2,8 @@
 
 ## Purpose
 
-This document defines how the Project Manager PWA will eventually keep data consistent between desktop and mobile installations.
+This document defines how the Project Manager PWA will eventually keep data
+consistent between desktop and mobile installations.
 
 Synchronization is intentionally NOT part of the initial application architecture.
 
@@ -10,7 +11,7 @@ The application must first work correctly as a local-first application.
 
 ---
 
-# 1. Fundamental Architecture
+## 1. Fundamental Architecture
 
 There is one application/codebase but potentially multiple local databases.
 
@@ -33,7 +34,7 @@ Do not assume that browser storage is automatically shared between devices.
 
 ---
 
-# 2. Initial Storage
+## 2. Initial Storage
 
 The initial application should use:
 
@@ -47,7 +48,7 @@ This allows the storage implementation to evolve later.
 
 ---
 
-# 3. Local-First Requirement
+## 3. Local-First Requirement
 
 The application must continue working without Internet connectivity.
 
@@ -64,7 +65,7 @@ Synchronization is a separate concern.
 
 ---
 
-# 4. Data Identity
+## 4. Data Identity
 
 Every persistent entity should have a stable unique identifier.
 
@@ -74,7 +75,8 @@ Preferred approach:
 UUID
 ```
 
-An entity should not receive a different ID simply because it was exported, imported or synchronized.
+An entity should not receive a different ID simply because it was exported,
+imported or synchronized.
 
 Candidate entities:
 
@@ -88,14 +90,15 @@ Candidate entities:
 
 ---
 
-# 5. Timestamps
+## 5. Timestamps
 
 Persistent entities should generally contain:
 
 * `createdAt`
 * `updatedAt`
 
-Deletion should eventually be represented in a synchronization-safe way rather than immediately destroying all evidence that an object existed.
+Deletion should eventually be represented in a synchronization-safe way
+rather than immediately destroying all evidence that an object existed.
 
 A future synchronization design may use:
 
@@ -108,7 +111,7 @@ Do not add synchronization metadata until required.
 
 ---
 
-# 6. Export
+## 6. Export
 
 Export must eventually provide a complete representation of user data.
 
@@ -136,7 +139,7 @@ The actual schema should be defined when export is implemented.
 
 ---
 
-# 7. Import
+## 7. Import
 
 Import must:
 
@@ -152,7 +155,7 @@ Never silently discard imported data.
 
 ---
 
-# 8. Backup
+## 8. Backup
 
 A backup is a recoverable copy of the complete application dataset.
 
@@ -168,7 +171,7 @@ Backups should not depend exclusively on synchronization.
 
 ---
 
-# 9. Initial Transfer Strategy
+## 9. Initial Transfer Strategy
 
 Before automatic synchronization exists, manual transfer may be used.
 
@@ -192,7 +195,7 @@ It also provides an early way to move data between devices without requiring a s
 
 ---
 
-# 10. Future Synchronization
+## 10. Future Synchronization
 
 Potential architectures may include:
 
@@ -245,11 +248,12 @@ A hosted database may eventually be considered.
 
 Possible technologies should be evaluated based on actual requirements.
 
-Do not introduce Supabase, Firebase or another hosted platform merely because it provides synchronization.
+Do not introduce Supabase, Firebase or another hosted platform merely
+because it provides synchronization.
 
 ---
 
-# 11. Conflict Resolution
+## 11. Conflict Resolution
 
 Conflict handling must be explicitly designed.
 
@@ -276,19 +280,22 @@ The selected strategy must be documented before implementation.
 
 ---
 
-# 12. Deletions
+## 12. Deletions
 
 Deletion is particularly important.
 
-A device that has not synchronized yet must be able to learn that an object was deleted elsewhere.
+A device that has not synchronized yet must be able to learn that an object
+was deleted elsewhere.
 
-Therefore, automatic synchronization may require tombstones or equivalent deletion records.
+Therefore, automatic synchronization may require tombstones or equivalent
+deletion records.
 
-Do not permanently delete synchronization-critical information until the synchronization model supports it.
+Do not permanently delete synchronization-critical information until the
+synchronization model supports it.
 
 ---
 
-# 13. Synchronization Safety
+## 13. Synchronization Safety
 
 Synchronization must never silently overwrite significant user data.
 
@@ -306,7 +313,7 @@ Before implementing automatic synchronization:
 
 ---
 
-# 14. Data Migration
+## 14. Data Migration
 
 The exported format should contain a version number.
 
@@ -329,7 +336,7 @@ Never assume old exports will always match the current database schema.
 
 ---
 
-# 15. Recovery Principle
+## 15. Recovery Principle
 
 The user must always have a way to recover from synchronization problems.
 
@@ -345,15 +352,16 @@ Restore known-good data
 Retry synchronization
 ```
 
-Automatic synchronization must never eliminate the ability to restore a previous state.
+Automatic synchronization must never eliminate the ability to restore a
+previous state.
 
 ---
 
-# 16. Current Status
+## 16. Current Status
 
 Synchronization is currently:
 
-**NOT IMPLEMENTED**
+**NOT IMPLEMENTED.**
 
 Current architecture:
 
@@ -374,11 +382,12 @@ Current recommended data-transfer mechanism:
 Manual JSON export/import
 ```
 
-Future synchronization architecture will be selected only after actual application requirements are understood.
+Future synchronization architecture will be selected only after actual
+application requirements are understood.
 
 ---
 
-# 17. Related Documentation
+## 17. Related Documentation
 
 * [ROADMAP.md](ROADMAP.md)
 * [TASKS.md](TASKS.md)

@@ -10,13 +10,13 @@ Do not implement future-phase functionality merely because it appears here.
 
 ---
 
-# Phase 0 — Project Foundation
+## Phase 0 — Project Foundation
 
-## Goal
+### Goal
 
 Establish a clean development environment.
 
-### Tasks
+#### Tasks
 
 * [ ] Initialize Git repository
 * [ ] Initialize TypeScript + React + Vite
@@ -29,19 +29,19 @@ Establish a clean development environment.
 * [ ] Create initial application shell
 * [ ] Create responsive layout foundation
 
-### Exit criteria
+#### Exit criteria
 
 The application starts, builds successfully and has a clean foundation.
 
 ---
 
-# Phase 1 — Core Project Management
+## Phase 1 — Core Project Management
 
-## Goal
+### Goal
 
 Create a useful local personal task/project manager.
 
-### Projects
+#### Projects
 
 * [ ] Create
 * [ ] Edit
@@ -51,7 +51,7 @@ Create a useful local personal task/project manager.
 * [ ] Status
 * [ ] Color/icon
 
-### Tasks
+#### Tasks
 
 * [ ] Create
 * [ ] Edit
@@ -65,21 +65,21 @@ Create a useful local personal task/project manager.
 * [ ] Due date
 * [ ] Ordering
 
-### Persistence
+#### Persistence
 
 * [ ] IndexedDB
 * [ ] Dexie/repository layer
 * [ ] Application settings
 
-### Exit criteria
+#### Exit criteria
 
 The application works as a basic personal task manager without a network connection.
 
 ---
 
-# Phase 2 — Daily Productivity
+## Phase 2 — Daily Productivity
 
-## Goal
+### Goal
 
 Make the application useful every day.
 
@@ -96,19 +96,19 @@ Make the application useful every day.
 * [ ] Keyboard shortcuts
 * [ ] Command palette
 
-### Exit criteria
+#### Exit criteria
 
 Daily task management feels fast and practical.
 
 ---
 
-# Phase 3 — Responsive Desktop/Mobile UX
+## Phase 3 — Responsive Desktop/Mobile UX
 
-## Goal
+### Goal
 
 Create polished experiences for both target platforms.
 
-### Desktop
+#### Desktop
 
 See [Desktop.md](Desktop.md).
 
@@ -119,7 +119,7 @@ See [Desktop.md](Desktop.md).
 * [ ] Desktop layouts
 * [ ] Desktop PWA testing
 
-### Mobile
+#### Mobile
 
 See [Mobile.md](Mobile.md).
 
@@ -129,15 +129,15 @@ See [Mobile.md](Mobile.md).
 * [ ] iPhone-safe layouts
 * [ ] Real iPhone testing
 
-### Exit criteria
+#### Exit criteria
 
 Core functionality works comfortably on both Linux desktop and iPhone.
 
 ---
 
-# Phase 4 — PWA
+## Phase 4 — PWA
 
-## Goal
+### Goal
 
 Turn the web application into a proper installable PWA.
 
@@ -152,7 +152,7 @@ Turn the web application into a proper installable PWA.
 * [ ] Offline PWA testing
 * [ ] Reinstallation/update testing
 
-### Testing
+#### Testing
 
 Use:
 
@@ -162,15 +162,15 @@ Use:
 4. Installed iPhone PWA
 5. HTTPS preview/deployment
 
-### Exit criteria
+#### Exit criteria
 
 The application works as an installed PWA on the primary target platforms.
 
 ---
 
-# Phase 5 — Data Safety
+## Phase 5 — Data Safety
 
-## Goal
+### Goal
 
 Make user data portable and recoverable.
 
@@ -183,13 +183,13 @@ Make user data portable and recoverable.
 * [ ] Backup integrity checks
 * [ ] Safe migrations
 
-### Exit criteria
+#### Exit criteria
 
 The complete dataset can be exported, backed up and restored.
 
 ---
 
-# Phase 6 — Notes and Knowledge
+## Phase 6 — Notes and Knowledge
 
 * [ ] Project notes
 * [ ] Standalone notes
@@ -200,7 +200,7 @@ The complete dataset can be exported, backed up and restored.
 
 ---
 
-# Phase 7 — Time Management
+## Phase 7 — Time Management
 
 * [ ] Time estimates
 * [ ] Timer
@@ -212,7 +212,7 @@ The complete dataset can be exported, backed up and restored.
 
 ---
 
-# Phase 8 — Synchronization
+## Phase 8 — Synchronization
 
 See [SYNCHRONIZATION.md](SYNCHRONIZATION.md).
 
@@ -230,7 +230,7 @@ Do not introduce a cloud backend until requirements justify it.
 
 ---
 
-# Phase 9 — Advanced Productivity
+## Phase 9 — Advanced Productivity
 
 Potential features:
 
@@ -247,7 +247,7 @@ These are not committed features.
 
 ---
 
-# Phase 10 — Optional AI
+## Phase 10 — Optional AI
 
 AI remains optional.
 
@@ -264,7 +264,7 @@ AI must never become a core dependency.
 
 ---
 
-# Explicitly Out of Scope
+## Explicitly Out of Scope
 
 Unless requirements change:
 
@@ -281,7 +281,7 @@ Unless requirements change:
 
 ---
 
-# Roadmap Rules
+## Roadmap Rules
 
 1. Work primarily on the current phase.
 2. Do not implement future features speculatively.

@@ -2,7 +2,8 @@
 
 ## 1. Project Overview
 
-This repository contains a personal Project Manager application designed for daily use on:
+This repository contains a personal Project Manager application designed
+for daily use on:
 
 * Linux desktop
 * iPhone
@@ -16,15 +17,17 @@ There must be:
 * One application
 * One deployment
 
-Desktop and mobile are different presentations of the same application, not separate applications.
+Desktop and mobile are different presentations of the same application, not
+separate applications.
 
 The primary goal is a fast, simple and reliable personal productivity tool.
 
-It is NOT intended to become a Jira/Trello replacement or multi-user enterprise system.
+It is NOT intended to become a Jira/Trello replacement or multi-user
+enterprise system.
 
 ---
 
-## 2. Core Principles
+### 2. Core Principles
 
 * Keep the application simple and personal.
 * Prefer useful functionality over feature quantity.
@@ -40,7 +43,7 @@ It is NOT intended to become a Jira/Trello replacement or multi-user enterprise 
 
 ---
 
-## 3. Initial Technology
+### 3. Initial Technology
 
 Preferred stack:
 
@@ -59,13 +62,14 @@ Do NOT introduce:
 * Remote database
 * Cloud backend
 
-during the initial implementation unless explicitly requested or a demonstrated requirement exists.
+during the initial implementation unless explicitly requested or a
+demonstrated requirement exists.
 
 SQLite/WASM may be evaluated later if a real requirement justifies it.
 
 ---
 
-## 4. Application Architecture
+### 4. Application Architecture
 
 Maintain separation between:
 
@@ -85,7 +89,7 @@ See:
 
 ---
 
-## 5. Local-First Requirement
+### 5. Local-First Requirement
 
 The application must remain useful without Internet connectivity.
 
@@ -108,7 +112,7 @@ See:
 
 ---
 
-## 6. Main Domain Concepts
+### 6. Main Domain Concepts
 
 The initial domain model revolves around:
 
@@ -129,7 +133,7 @@ Follow the current roadmap phase.
 
 ---
 
-## 7. PWA Architecture
+### 7. PWA Architecture
 
 The application is one web application that can run:
 
@@ -153,7 +157,7 @@ PWA implementation must not create a second codebase.
 
 ---
 
-## 8. Desktop
+### 8. Desktop
 
 Desktop-specific requirements are documented in:
 
@@ -170,7 +174,7 @@ Desktop should emphasize:
 
 ---
 
-## 9. Mobile
+### 9. Mobile
 
 Mobile-specific requirements are documented in:
 
@@ -178,7 +182,7 @@ Mobile-specific requirements are documented in:
 
 The primary real-device mobile test target is:
 
-**iPhone 15 Pro Max**
+**iPhone 15 Pro Max.**
 
 Mobile must be treated as a first-class platform.
 
@@ -186,13 +190,13 @@ Do not simply shrink the desktop UI.
 
 ---
 
-## 10. Mobile Development and Testing
+### 10. Mobile Development and Testing
 
 Mobile testing is part of normal development.
 
 Use three levels of mobile testing:
 
-### Level 1 — Browser emulation
+#### Level 1 — Browser emulation
 
 Use Chromium/Chrome device emulation on Linux for rapid UI iteration.
 
@@ -205,7 +209,7 @@ This is useful for:
 
 It is NOT a replacement for real-device testing.
 
-### Level 2 — Real iPhone development testing
+#### Level 2 — Real iPhone development testing
 
 Expose the Vite development server on the local network.
 
@@ -221,7 +225,7 @@ The Linux computer and iPhone must normally be connected to the same local netwo
 
 This is the primary rapid real-device testing workflow.
 
-### Level 3 — HTTPS installed PWA testing
+#### Level 3 — HTTPS installed PWA testing
 
 Use an HTTPS deployment/preview to test:
 
@@ -236,7 +240,7 @@ Do not consider PWA functionality complete based solely on desktop browser testi
 
 ---
 
-## 11. Mobile Testing Rule
+### 11. Mobile Testing Rule
 
 Whenever a change affects:
 
@@ -262,7 +266,7 @@ Do not claim real-device compatibility without testing it.
 
 ---
 
-## 12. UX Direction
+### 12. UX Direction
 
 Optimize for very fast interaction.
 
@@ -283,7 +287,7 @@ The "Today" view should eventually become the primary daily workspace.
 
 ---
 
-## 13. Data Safety
+### 13. Data Safety
 
 User data is important.
 
@@ -302,7 +306,7 @@ See:
 
 ---
 
-## 14. Synchronization
+### 14. Synchronization
 
 Desktop and mobile will eventually contain separate local copies of the user's data.
 
@@ -318,7 +322,7 @@ See:
 
 ---
 
-## 15. Development Workflow
+### 15. Development Workflow
 
 Before implementing a substantial feature:
 
@@ -339,9 +343,10 @@ See:
 
 ---
 
-## 16. Error Tracking
+### 16. Error Tracking
 
-Record significant bugs, failed approaches, architectural mistakes and solutions in:
+Record significant bugs, failed approaches, architectural mistakes and
+solutions in:
 
 * [ERRORLOG.md](docs/ERRORLOG.md)
 
@@ -349,7 +354,7 @@ Before attempting to solve a recurring or unusual problem, check ERRORLOG.md.
 
 ---
 
-## 17. Documentation Hierarchy
+### 17. Documentation Hierarchy
 
 The following files are authoritative for their areas:
 
@@ -365,7 +370,7 @@ Do not duplicate detailed specifications unnecessarily.
 
 ---
 
-## 18. Scope Control
+### 18. Scope Control
 
 Initially out of scope:
 
@@ -385,7 +390,7 @@ Advanced functionality may be introduced later if justified.
 
 ---
 
-## 19. AI-Assisted Development
+### 19. AI-Assisted Development
 
 This project is intentionally developed using AI-assisted/vibe coding.
 
@@ -403,7 +408,7 @@ Therefore:
 
 ---
 
-## 20. Definition of Done
+### 20. Definition of Done
 
 A feature is not complete merely because it works on Linux.
 
@@ -424,7 +429,7 @@ For mobile-sensitive changes, real iPhone testing is preferred.
 
 ---
 
-## 21. Current Project Documentation
+### 21. Current Project Documentation
 
 Start with:
 
@@ -436,7 +441,7 @@ Then consult the relevant architecture/platform document.
 
 ---
 
-## 22. Important Rule
+### 22. Important Rule
 
 When requirements conflict, prioritize:
 

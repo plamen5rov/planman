@@ -2,17 +2,18 @@
 
 ## Purpose
 
-This document defines desktop-specific UX, behavior and testing for the Project Manager PWA.
+This document defines desktop-specific UX, behavior and testing for the
+Project Manager PWA.
 
 Primary target:
 
-**Linux desktop**
+**Linux desktop.**
 
 The desktop application is the same PWA/codebase as the mobile application.
 
 ---
 
-# 1. Desktop Goals
+## 1. Desktop Goals
 
 The desktop experience should be:
 
@@ -25,7 +26,7 @@ The desktop experience should be:
 
 ---
 
-# 2. Desktop Development Environment
+## 2. Desktop Development Environment
 
 Primary development environment:
 
@@ -43,7 +44,7 @@ The desktop browser is the fastest feedback environment.
 
 ---
 
-# 3. Desktop Development Loop
+## 3. Desktop Development Loop
 
 ```text
 OpenCode
@@ -63,7 +64,7 @@ Use this for rapid development.
 
 ---
 
-# 4. Layout
+## 4. Layout
 
 Preferred conceptual structure:
 
@@ -87,7 +88,7 @@ The final layout may evolve.
 
 ---
 
-# 5. Navigation
+## 5. Navigation
 
 Candidate desktop navigation:
 
@@ -101,7 +102,7 @@ Candidate desktop navigation:
 
 ---
 
-# 6. Keyboard Support
+## 6. Keyboard Support
 
 Keyboard interaction is a first-class desktop feature.
 
@@ -120,7 +121,7 @@ Do not interfere with normal browser shortcuts without good reason.
 
 ---
 
-# 7. Command Palette
+## 7. Command Palette
 
 Potential commands:
 
@@ -139,7 +140,7 @@ Potential commands:
 
 ---
 
-# 8. Mouse Interaction
+## 8. Mouse Interaction
 
 Desktop may support:
 
@@ -153,7 +154,7 @@ Important functionality must remain accessible without drag-and-drop.
 
 ---
 
-# 9. Task Lists
+## 9. Task Lists
 
 Desktop may show:
 
@@ -169,7 +170,7 @@ Do not overload the interface by default.
 
 ---
 
-# 10. Responsive Behavior
+## 10. Responsive Behavior
 
 Test at:
 
@@ -181,7 +182,7 @@ Avoid unnecessary fixed minimum widths.
 
 ---
 
-# 11. Desktop PWA Testing
+## 11. Desktop PWA Testing
 
 Test both:
 
@@ -205,7 +206,7 @@ Do not assume browser behavior and installed-PWA behavior are identical.
 
 ---
 
-# 12. Offline Testing
+## 12. Offline Testing
 
 Test:
 
@@ -227,7 +228,7 @@ Verify local persistence
 
 ---
 
-# 13. Performance
+## 13. Performance
 
 The application should remain responsive with a large number of tasks.
 
@@ -242,7 +243,7 @@ Virtualization should only be introduced when actual data volumes justify it.
 
 ---
 
-# 14. Accessibility
+## 14. Accessibility
 
 Support:
 
@@ -256,7 +257,7 @@ Never communicate important information using color alone.
 
 ---
 
-# 15. Definition of Desktop Done
+## 15. Definition of Desktop Done
 
 Where relevant, test:
 
