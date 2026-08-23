@@ -2,6 +2,13 @@
 
 Last updated: 2026-08-23
 
+- [2026-08-23] Data model for Phase 1: Project/Task entity types
+  (UUID identity, createdAt/updatedAt), decided status models (task:
+  todo/doing/done; project: active/on-hold/completed/archived), priority
+  none/low/medium/high, entity factories and status-transition helper with
+  unit tests (files modified: src/types/domain.ts, src/domain/entities.ts,
+  src/domain/entities.test.ts, docs/TASKS.md)
+
 - [2026-08-23] Responsive layout foundation: desktop sidebar nav + mobile
   bottom tab bar (5 sections), section switching with aria-current, test
   cleanup in setup file, added @testing-library/user-event; Phase 0 exit

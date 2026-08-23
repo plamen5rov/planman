@@ -56,7 +56,7 @@ See:
 
 * [x] Create initial application shell
 * [x] Create responsive layout foundation
-* [ ] Establish data model
+* [x] Establish data model
 * [ ] Establish repository/data-access layer
 * [x] Add basic tests
 * [ ] Implement local persistence
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Establish data model
+Establish repository/data-access layer
 ```
 
 ---
@@ -118,8 +118,9 @@ Record questions that require a deliberate architectural/product decision.
 
 * [ ] Finalize application name
 * [ ] Finalize visual design direction
-* [ ] Decide initial task status model
-* [ ] Decide initial project status model
+* [x] Decide initial task status model — To do / Doing / Done
+* [x] Decide initial project status model — Active / On hold / Completed /
+  Archived
 
 ---
 
