@@ -26,7 +26,7 @@ It is intentionally different from ROADMAP.md.
 
 ## Current Phase
 
-**Phase 2 — Daily Productivity.**
+**Phase 4 — PWA.**
 
 See:
 
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Phase 2 — Daily Productivity (Today view, overdue tasks, upcoming tasks)
+Phase 4 — PWA (manifest, icons, service worker, offline shell)
 ```
 
 ---
