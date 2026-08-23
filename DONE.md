@@ -2,6 +2,10 @@
 
 Last updated: 2026-08-23
 
+- [2026-08-23] Harden .gitignore (env/secret files, OS files) and add a
+  standing rule to AGENTS.md: review/update .gitignore before every git
+  add/push (files modified: .gitignore, AGENTS.md, DONE.md)
+
 - [2026-08-23] Phase 0 app skeleton: Vite 8 + React 19 + TypeScript 6,
   oxlint, Vitest/jsdom/Testing Library smoke test, minimal app shell,
   verified lint/typecheck/test/build and dev server; markdownlint now

@@ -57,6 +57,8 @@ Desktop and mobile are the same application, not separate codebases.
    AGENTS.md.
 5. Record significant bugs / failed approaches in
    [ERRORLOG.md](docs/ERRORLOG.md).
+6. Before every `git add` / push, review `.gitignore` and update it for any
+   new build output, generated files, or secret/env files.
 
 ## Markup hygiene
 
