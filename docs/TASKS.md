@@ -67,7 +67,7 @@ See:
 * [x] Define typography
 * [x] Define spacing system
 * [x] Define basic component conventions
-* [ ] Document architecture decisions
+* [x] Document architecture decisions
 
 ### P3 — Later
 
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Implement local persistence (settings + end-to-end wiring)
+Build Projects UI (list + create, Phase 1 core feature)
 ```
 
 ---

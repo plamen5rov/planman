@@ -8,5 +8,4 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'projects', label: 'Projects' },
   { id: 'tasks', label: 'Tasks' },
   { id: 'calendar', label: 'Calendar' },
-  { id: 'notes', label: 'Notes' },
 ]
