@@ -66,7 +66,7 @@ See:
 * [x] Establish initial visual design
 * [x] Define typography
 * [x] Define spacing system
-* [ ] Define basic component conventions
+* [x] Define basic component conventions
 * [ ] Document architecture decisions
 
 ### P3 — Later
