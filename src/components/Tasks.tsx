@@ -10,6 +10,7 @@ export function Tasks() {
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -72,14 +73,24 @@ export function Tasks() {
 
   const cancelEdit = () => setEditingId(null)
 
+  const filtered = searchQuery
+    ? tasks.filter(t => t.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    : tasks
+
   if (loading) return <p className="caption">Loading...</p>
   if (error) return <p className="caption">{error}</p>
 
   return (
     <section>
       <h2 className="h2">Tasks</h2>
+      <input
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+        placeholder="Search tasks..."
+        className="mb-md"
+      />
       <div className="card">
-        {tasks.map((task) => (
+        {filtered.map((task) => (
           <div key={task.id} className="list-item">
             <button
               type="button"
@@ -116,8 +127,10 @@ export function Tasks() {
             </button>
           </div>
         ))}
-        {tasks.length === 0 && (
-          <p className="caption">No tasks yet.</p>
+        {filtered.length === 0 && (
+          <p className="caption">
+            {searchQuery ? 'No matching tasks.' : 'No tasks yet.'}
+          </p>
         )}
       </div>
       <div className="mt-md">
