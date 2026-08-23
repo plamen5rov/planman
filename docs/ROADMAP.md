@@ -18,15 +18,15 @@ Establish a clean development environment.
 
 #### Tasks
 
-* [ ] Initialize Git repository
-* [ ] Initialize TypeScript + React + Vite
-* [ ] Establish project structure
-* [ ] Create AGENTS.md
-* [ ] Create `/docs`
-* [ ] Establish coding conventions
-* [ ] Establish testing
-* [ ] Establish development/build commands
-* [ ] Create initial application shell
+* [x] Initialize Git repository
+* [x] Initialize TypeScript + React + Vite
+* [x] Establish project structure
+* [x] Create AGENTS.md
+* [x] Create `/docs`
+* [x] Establish coding conventions
+* [x] Establish testing
+* [x] Establish development/build commands
+* [x] Create initial application shell
 * [ ] Create responsive layout foundation
 
 #### Exit criteria

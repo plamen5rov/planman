@@ -5,11 +5,10 @@ non-obvious, must-not-forget context.
 
 ## Current state
 
-- Phase 0 — Project Foundation. No source code, build system, or tests exist
-  yet.
-- The repo currently contains only planning docs and
-  `.markdownlint-cli2.jsonc`.
-- Next task: initialize the project repository / app skeleton.
+- Phase 0 — Project Foundation. App skeleton exists: Vite + React +
+  TypeScript, oxlint, Vitest smoke test; lint/typecheck/test/build verified.
+- Next task: responsive layout foundation, then Phase 1 (data model +
+  repository layer + local persistence).
 
 See [TASKS.md](docs/TASKS.md) and [ROADMAP.md](docs/ROADMAP.md).
 
@@ -64,8 +63,15 @@ Desktop and mobile are the same application, not separate codebases.
 - Run `npx markdownlint-cli2 "**/*.md"` before finishing a doc change.
 - Config is in `.markdownlint-cli2.jsonc`.
 
-## When source code arrives
+## Developer commands
 
-Once `package.json`, Vite, tests, etc. are added, update this file with exact
-developer commands and verification order. Do not leave guessed commands
-here.
+- `npm run dev` — dev server. For real-iPhone testing:
+  `npm run dev -- --host 0.0.0.0`
+- Verification order: `npm run lint` → `npm run typecheck` → `npm test` →
+  `npm run build`
+- `npm run test:watch` — Vitest in watch mode
+- Docs: `npx markdownlint-cli2 "**/*.md"`
+
+Toolchain: Vite 8, TypeScript 6 (strict), React 19, oxlint, Vitest + jsdom +
+Testing Library. Tests live next to source (`src/**/*.test.tsx`). Keep
+dependencies minimal.

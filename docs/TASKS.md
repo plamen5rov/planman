@@ -47,18 +47,18 @@ See:
 
 ### P0 — Blocking
 
-* [ ] Initialize project repository
-* [ ] Create React + TypeScript + Vite application
-* [ ] Establish basic folder structure
-* [ ] Verify development/build process
+* [x] Initialize project repository
+* [x] Create React + TypeScript + Vite application
+* [x] Establish basic folder structure
+* [x] Verify development/build process
 
 ### P1 — High Priority
 
-* [ ] Create initial application shell
+* [x] Create initial application shell
 * [ ] Create responsive layout foundation
 * [ ] Establish data model
 * [ ] Establish repository/data-access layer
-* [ ] Add basic tests
+* [x] Add basic tests
 * [ ] Implement local persistence
 
 ### P2 — Normal
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Initialize project repository
+Create responsive layout foundation
 ```
 
 ---
@@ -95,7 +95,8 @@ Initialize project repository
 
 Move completed tasks here temporarily if they provide useful project history.
 
-* [ ] None yet
+* [x] 2026-08-23 — Phase 0 skeleton: Vite + React + TypeScript app, oxlint,
+  Vitest smoke test, verified lint/typecheck/test/build
 
 ---
 
