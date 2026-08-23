@@ -59,7 +59,7 @@ See:
 * [x] Establish data model
 * [x] Establish repository/data-access layer
 * [x] Add basic tests
-* [ ] Implement local persistence
+* [x] Implement local persistence (settings + end-to-end wiring)
 
 ### P2 — Normal
 
