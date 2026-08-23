@@ -1,9 +1,24 @@
 import { useEffect, useState } from 'react'
 import { DexieTaskRepository } from '../repositories/task-repository'
 import { db } from '../db/database'
-import type { Task } from '../types/domain'
+import type { Task, TaskStatus, TaskPriority } from '../types/domain'
 
 const repo = new DexieTaskRepository(db)
+
+const STATUS_OPTIONS: Array<{ value: TaskStatus | 'all'; label: string }> = [
+  { value: 'all', label: 'All' },
+  { value: 'todo', label: 'To do' },
+  { value: 'doing', label: 'Doing' },
+  { value: 'done', label: 'Done' },
+]
+
+const PRIORITY_OPTIONS: Array<{ value: TaskPriority | 'all'; label: string }> = [
+  { value: 'all', label: 'All' },
+  { value: 'high', label: 'High' },
+  { value: 'medium', label: 'Med' },
+  { value: 'low', label: 'Low' },
+  { value: 'none', label: 'None' },
+]
 
 export function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -11,6 +26,8 @@ export function Tasks() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState<TaskStatus | 'all'>('all')
+  const [priorityFilter, setPriorityFilter] = useState<TaskPriority | 'all'>('all')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -73,9 +90,12 @@ export function Tasks() {
 
   const cancelEdit = () => setEditingId(null)
 
-  const filtered = searchQuery
-    ? tasks.filter(t => t.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    : tasks
+  const filtered = tasks.filter(t => {
+    const matchesSearch = !searchQuery || t.title.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesStatus = statusFilter === 'all' || t.status === statusFilter
+    const matchesPriority = priorityFilter === 'all' || t.priority === priorityFilter
+    return matchesSearch && matchesStatus && matchesPriority
+  })
 
   if (loading) return <p className="caption">Loading...</p>
   if (error) return <p className="caption">{error}</p>
@@ -89,6 +109,24 @@ export function Tasks() {
         placeholder="Search tasks..."
         className="mb-md"
       />
+      <div className="mb-md" style={{ display: 'flex', gap: '8px' }}>
+        <select
+          value={statusFilter}
+          onChange={e => setStatusFilter(e.target.value as TaskStatus | 'all')}
+        >
+          {STATUS_OPTIONS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select
+          value={priorityFilter}
+          onChange={e => setPriorityFilter(e.target.value as TaskPriority | 'all')}
+        >
+          {PRIORITY_OPTIONS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
       <div className="card">
         {filtered.map((task) => (
           <div key={task.id} className="list-item">
@@ -129,7 +167,9 @@ export function Tasks() {
         ))}
         {filtered.length === 0 && (
           <p className="caption">
-            {searchQuery ? 'No matching tasks.' : 'No tasks yet.'}
+            {searchQuery || statusFilter !== 'all' || priorityFilter !== 'all'
+              ? 'No matching tasks.'
+              : 'No tasks yet.'}
           </p>
         )}
       </div>

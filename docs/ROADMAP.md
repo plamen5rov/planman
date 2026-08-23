@@ -88,7 +88,7 @@ Make the application useful every day.
 * [x] Today's tasks
 * [x] Upcoming tasks
 * [x] Search
-* [ ] Filtering
+* [x] Filtering
 * [ ] Sorting
 * [ ] Tags
 * [ ] Subtasks
