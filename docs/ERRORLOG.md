@@ -89,6 +89,38 @@ Example files.
 
 ---
 
+### ERR-002 — Constructor parameter properties rejected by tsconfig
+
+Date: 2026-08-23
+Status: Resolved
+
+#### Symptom
+
+`tsc -b` failed with TS1294 in classes written as
+`constructor(private readonly db: PlanmanDatabase)`.
+
+#### Cause
+
+The Vite react-ts template enables `erasableSyntaxOnly`, which forbids
+TypeScript-only syntax that requires transform output, including constructor
+parameter properties.
+
+#### Solution
+
+Declare the field explicitly and assign it inside the constructor body.
+
+#### Prevention
+
+Avoid parameter properties, enums, namespaces and other non-erasable
+syntax in this repository.
+
+#### Related Files
+
+src/repositories/project-repository.ts,
+src/repositories/task-repository.ts, tsconfig.app.json
+
+---
+
 ## Important Lessons
 
 This section may contain short, general lessons extracted from individual errors.

@@ -57,7 +57,7 @@ See:
 * [x] Create initial application shell
 * [x] Create responsive layout foundation
 * [x] Establish data model
-* [ ] Establish repository/data-access layer
+* [x] Establish repository/data-access layer
 * [x] Add basic tests
 * [ ] Implement local persistence
 
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Establish repository/data-access layer
+Implement local persistence (settings + end-to-end wiring)
 ```
 
 ---

@@ -2,6 +2,41 @@
 
 Last updated: 2026-08-23
 
+- [2026-08-23] Harden .gitignore (env/secret files, OS files) and add a
+  standing rule to AGENTS.md: review/update .gitignore before every git
+  add/push (files modified: .gitignore, AGENTS.md, DONE.md)
+- [2026-08-23] Phase 0 app skeleton: Vite 8 + React 19 + TypeScript 6,
+  oxlint, Vitest/jsdom/Testing Library smoke test, minimal app shell,
+  verified lint/typecheck/test/build and dev server (files modified:
+  package.json, package-lock.json, vite.config.ts, tsconfig*.json, .oxlintrc.json,
+  .gitignore, .markdownlint-cli2.jsonc, index.html, src/,
+  public/favicon.svg, docs/TASKS.md, docs/ROADMAP.md, AGENTS.md)
+- [2026-08-23] Phase 0 completed: all 10 roadmap checkboxes done, Phase 0
+  exit criteria met ("The application launches, builds cleanly, and has a tidy
+  foundation"); current phase advanced to Phase 1
+- [2026-08-23] Data model for Phase 1: Project/Task entity types (UUID
+  identity, createdAt/updatedAt), decided status models (task: todo/doing/done;
+  project: active/on-hold/completed/archived), priority none/low/medium/high,
+  entity factories and status-transition helper with unit tests (files modified:
+  src/types/domain.ts, src/domain/entities.ts, docs/TASKS.md, docs/ROADMAP.md,
+  AGENTS.md)
+- [2026-08-23] Repository/data-access layer: ProjectRepository and TaskRepository
+  interfaces plus Dexie-backed implementations (Dexie schema v1: planman DB,
+  projects/tasks tables), CRUD + archive/complete, integration tests on
+  fake-indexeddb (files modified: src/repositories/types.ts, src/db/database.ts,
+  src/repositories/project-repository.ts, src/repositories/task-repository.ts,
+  src/repositories/repositories.test.ts, docs/ERRORLOG.md, docs/TASKS.md,
+  package.json, package-lock.json)
+
+- [2026-08-23] Repository/data-access layer: ProjectRepository and
+  TaskRepository interfaces plus Dexie-backed implementations (Dexie schema
+  v1: planman DB, projects/tasks tables), CRUD + archive/complete,
+  integration tests on fake-indexeddb (files modified:
+  src/repositories/types.ts, src/repositories/project-repository.ts,
+  src/repositories/task-repository.ts, src/db/database.ts,
+  src/repositories/repositories.test.ts, docs/ERRORLOG.md, docs/TASKS.md,
+  package.json, package-lock.json)
+
 - [2026-08-23] Data model for Phase 1: Project/Task entity types
   (UUID identity, createdAt/updatedAt), decided status models (task:
   todo/doing/done; project: active/on-hold/completed/archived), priority
