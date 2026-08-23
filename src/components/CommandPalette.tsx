@@ -32,10 +32,11 @@ export function CommandPalette({ open, onClose, onNavigate }: CommandPaletteProp
   }, [open])
 
   const commands: Command[] = [
-    { id: 'today', label: 'Go to Today', shortcut: '1', action: () => { onNavigate('today'); onClose() } },
-    { id: 'projects', label: 'Go to Projects', shortcut: '2', action: () => { onNavigate('projects'); onClose() } },
-    { id: 'tasks', label: 'Go to Tasks', shortcut: '3', action: () => { onNavigate('tasks'); onClose() } },
+    { id: 'today', label: 'Go to Today', shortcut: '1 / T', action: () => { onNavigate('today'); onClose() } },
+    { id: 'projects', label: 'Go to Projects', shortcut: '2 / P', action: () => { onNavigate('projects'); onClose() } },
+    { id: 'tasks', label: 'Go to Tasks', shortcut: '3 / S', action: () => { onNavigate('tasks'); onClose() } },
     { id: 'calendar', label: 'Go to Calendar', shortcut: '4', action: () => { onNavigate('calendar'); onClose() } },
+    { id: 'new-task', label: 'New task', shortcut: 'N / Ctrl+N', action: () => { onNavigate('tasks'); onClose() } },
   ]
 
   const taskCommands: Command[] = tasks.slice(0, 10).map(t => ({

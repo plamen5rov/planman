@@ -25,11 +25,28 @@ function App() {
         setCmdOpen(true)
       }
       if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+        const target = document.activeElement
+        if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
         const num = parseInt(e.key, 10)
         if (num >= 1 && num <= NAV_ITEMS.length) {
-          const target = document.activeElement
-          if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
           setActiveId(NAV_ITEMS[num - 1]!.id)
+          return
+        }
+        if (e.key === 'n' || e.key === 'N') {
+          setQuickAddOpen(true)
+          return
+        }
+        if (e.key === 't' || e.key === 'T') {
+          setActiveId('today')
+          return
+        }
+        if (e.key === 'p' || e.key === 'P') {
+          setActiveId('projects')
+          return
+        }
+        if (e.key === 's' || e.key === 'S') {
+          setActiveId('tasks')
+          return
         }
       }
       if (e.key === 'Escape') {

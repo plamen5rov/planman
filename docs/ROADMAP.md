@@ -112,21 +112,21 @@ Create polished experiences for both target platforms.
 
 See [Desktop.md](Desktop.md).
 
-* [ ] Desktop navigation
-* [ ] Keyboard interaction
-* [ ] Command palette
-* [ ] Mouse interaction
-* [ ] Desktop layouts
+* [x] Desktop navigation
+* [x] Keyboard interaction
+* [x] Command palette
+* [x] Mouse interaction
+* [x] Desktop layouts
 * [ ] Desktop PWA testing
 
 #### Mobile
 
 See [Mobile.md](Mobile.md).
 
-* [ ] Mobile navigation
-* [ ] Touch controls
-* [ ] Mobile task creation
-* [ ] iPhone-safe layouts
+* [x] Mobile navigation
+* [x] Touch controls
+* [x] Mobile task creation
+* [x] iPhone-safe layouts
 * [ ] Real iPhone testing
 
 #### Exit criteria
