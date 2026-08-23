@@ -1,7 +1,7 @@
-import type { CreateTaskInput } from '../domain/entities'
-import { changeTaskStatus, createTask } from '../domain/entities'
-import type { PlanmanDatabase } from '../db/database'
+import { createTask } from '../domain/entities'
+import { changeTaskStatus } from '../domain/entities'
 import type { Task } from '../types/domain'
+import type { PlanmanDatabase } from '../db/database'
 import type { TaskRepository } from './types'
 
 export class DexieTaskRepository implements TaskRepository {
@@ -22,7 +22,7 @@ export class DexieTaskRepository implements TaskRepository {
     return this.db.tasks.get(id)
   }
 
-  async create(input: CreateTaskInput): Promise<Task> {
+  async create(input: Parameters<TaskRepository['create']>[0]) {
     const task = createTask(input)
     await this.db.tasks.add(task)
     return task
@@ -46,7 +46,8 @@ export class DexieTaskRepository implements TaskRepository {
       }
       await this.db.tasks.put(updated)
       return updated
-    })
+    }
+    )
   }
 
   async complete(id: string): Promise<Task> {
@@ -58,7 +59,8 @@ export class DexieTaskRepository implements TaskRepository {
       const completed = changeTaskStatus(existing, 'done')
       await this.db.tasks.put(completed)
       return completed
-    })
+    }
+    )
   }
 
   async delete(id: string): Promise<void> {
