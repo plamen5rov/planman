@@ -43,24 +43,24 @@ Create a useful local personal task/project manager.
 
 #### Projects
 
-* [ ] Create
-* [ ] Edit
-* [ ] Archive
-* [ ] Delete
+* [x] Create
+* [x] Edit
+* [x] Archive
+* [x] Delete
 * [ ] Description
-* [ ] Status
+* [x] Status
 * [ ] Color/icon
 
 #### Tasks
 
-* [ ] Create
-* [ ] Edit
-* [ ] Delete
-* [ ] Complete
-* [ ] Reopen
+* [x] Create
+* [x] Edit
+* [x] Delete
+* [x] Complete
+* [x] Reopen
 * [ ] Assign to project
 * [ ] Description
-* [ ] Status
+* [x] Status
 * [ ] Priority
 * [ ] Due date
 * [ ] Ordering

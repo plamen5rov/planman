@@ -26,7 +26,7 @@ It is intentionally different from ROADMAP.md.
 
 ## Current Phase
 
-**Phase 1 — Core Project Management.**
+**Phase 2 — Daily Productivity.**
 
 See:
 
@@ -86,7 +86,7 @@ Current task:
 None
 
 Next task:
-Build Projects UI (list + create, Phase 1 core feature)
+Phase 2 — Daily Productivity (Today view, overdue tasks, upcoming tasks)
 ```
 
 ---
