@@ -92,7 +92,7 @@ Make the application useful every day.
 * [x] Sorting
 * [ ] Tags
 * [ ] Subtasks
-* [ ] Quick task creation
+* [x] Quick task creation
 * [ ] Keyboard shortcuts
 * [ ] Command palette
 
