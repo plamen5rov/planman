@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { DexieTaskRepository } from '../repositories/task-repository'
 import { db } from '../db/database'
+import { Modal } from './ui/Modal'
 import type { Task } from '../types/domain'
 
 const taskRepo = new DexieTaskRepository(db)
@@ -35,7 +36,6 @@ export function CommandPalette({ open, onClose, onNavigate }: CommandPaletteProp
     { id: 'today', label: 'Go to Today', shortcut: '1 / T', action: () => { onNavigate('today'); onClose() } },
     { id: 'projects', label: 'Go to Projects', shortcut: '2 / P', action: () => { onNavigate('projects'); onClose() } },
     { id: 'tasks', label: 'Go to Tasks', shortcut: '3 / S', action: () => { onNavigate('tasks'); onClose() } },
-    { id: 'calendar', label: 'Go to Calendar', shortcut: '4', action: () => { onNavigate('calendar'); onClose() } },
     { id: 'new-task', label: 'New task', shortcut: 'N / Ctrl+N', action: () => { onNavigate('tasks'); onClose() } },
   ]
 
@@ -50,54 +50,35 @@ export function CommandPalette({ open, onClose, onNavigate }: CommandPaletteProp
     ? all.filter(c => c.label.toLowerCase().includes(query.toLowerCase()))
     : all
 
-  if (!open) return null
-
   return (
-    <div
-      style={{
-        position: 'fixed', inset: 0, zIndex: 200,
-        display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-        paddingTop: '15vh', background: 'rgba(0,0,0,0.3)',
-      }}
-      onClick={onClose}
-    >
-      <div
-        className="card"
-        onClick={e => e.stopPropagation()}
-        style={{ width: '100%', maxWidth: 480 }}
-      >
-        <input
-          ref={inputRef}
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          onKeyDown={e => {
-            if (e.key === 'Escape') onClose()
-            if (e.key === 'Enter' && filtered.length > 0) filtered[0]!.action()
-          }}
-          placeholder="Type a command..."
-          style={{ width: '100%', marginBottom: 12 }}
-        />
-        <div style={{ maxHeight: 300, overflowY: 'auto' }}>
-          {filtered.map((cmd) => (
-            <button
-              key={cmd.id}
-              type="button"
-              onClick={cmd.action}
-              style={{
-                display: 'flex', width: '100%', justifyContent: 'space-between',
-                padding: '8px 12px', border: 0, background: 'transparent',
-                cursor: 'pointer', textAlign: 'left',
-              }}
-            >
-              <span>{cmd.label}</span>
-              {cmd.shortcut && <span className="caption">{cmd.shortcut}</span>}
-            </button>
-          ))}
-          {filtered.length === 0 && (
-            <p className="caption">No commands found.</p>
-          )}
-        </div>
+    <Modal open={open} onClose={onClose}>
+      <input
+        ref={inputRef}
+        className="palette-input"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === 'Escape') onClose()
+          if (e.key === 'Enter' && filtered.length > 0) filtered[0]!.action()
+        }}
+        placeholder="Type a command..."
+      />
+      <div style={{ maxHeight: 300, overflowY: 'auto', padding: 'var(--space-sm)' }}>
+        {filtered.map((cmd) => (
+          <button
+            key={cmd.id}
+            type="button"
+            className="palette-item"
+            onClick={cmd.action}
+          >
+            <span>{cmd.label}</span>
+            {cmd.shortcut && <span className="palette-item__shortcut">{cmd.shortcut}</span>}
+          </button>
+        ))}
+        {filtered.length === 0 && (
+          <p className="caption" style={{ padding: 'var(--space-md)', textAlign: 'center' }}>No commands found.</p>
+        )}
       </div>
-    </div>
+    </Modal>
   )
 }

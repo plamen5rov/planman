@@ -2,6 +2,20 @@
 
 Last updated: 2026-08-23
 
+- [2026-08-23] Visual overhaul: Things 3 × Linear design system — Geist
+  variable fonts, Phosphor icons, full CSS token system (light/dark),
+  UI primitives (Button, IconButton, TextField, Select, Checkbox,
+  EmptyState, Modal), restyled all views (files modified:
+  package.json, package-lock.json, src/styles/app.css, src/main.tsx,
+  src/App.tsx, src/components/ui/*, src/components/SidebarNav.tsx,
+  src/components/BottomNav.tsx, src/components/Today.tsx,
+  src/components/Projects.tsx, src/components/Tasks.tsx,
+  src/components/QuickAdd.tsx, src/components/CommandPalette.tsx,
+  src/components/navItems.ts, src/App.test.tsx, src/test/setup.ts)
+- [2026-08-23] Project tagging for tasks: project selector on create
+  and edit, project filter in task list, project badge on task rows,
+  project selector in QuickAdd (files modified: src/components/Tasks.tsx,
+  src/components/QuickAdd.tsx)
 - [2026-08-23] Harden .gitignore (env/secret files, OS files) and add a
   standing rule to AGENTS.md: review/update .gitignore before every git
   add/push (files modified: .gitignore, AGENTS.md, DONE.md)

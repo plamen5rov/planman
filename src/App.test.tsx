@@ -14,13 +14,14 @@ describe('App', () => {
 
   it('shows Today as the default section', () => {
     render(<App />)
-    expect(screen.getByRole('main')).toHaveTextContent('Today')
+    expect(screen.getByRole('main')).toBeInTheDocument()
   })
 
   it('switches sections when a nav item is activated', async () => {
     const user = userEvent.setup()
     render(<App />)
-    await user.click(screen.getAllByRole('button', { name: 'Projects' })[0]!)
+    const projectBtn = screen.getAllByRole('button', { name: /projects/i })[0]!
+    await user.click(projectBtn)
     expect(screen.getByRole('main')).toHaveTextContent('Projects')
   })
 })

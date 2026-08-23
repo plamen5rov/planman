@@ -95,10 +95,10 @@ Phase 4 — PWA (manifest, icons, service worker, offline shell)
 
 Move completed tasks here temporarily if they provide useful project history.
 
-* [x] 2026-08-23 — Responsive layout foundation: desktop sidebar nav +
-  mobile bottom tab bar, section switching (files modified: src/App.tsx,
-  src/components/*, src/styles/app.css, src/test/setup.ts,
-  package.json)
+* [x] 2026-08-23 — Visual overhaul: Things 3 × Linear design direction. Geist
+  typography, Phosphor icons, coral accent, zinc neutrals, component
+  primitives, restyled chrome/views. (files: src/styles/app.css,
+  src/components/ui/*, src/components/*, src/App.tsx, package.json)
 
 ---
 
@@ -117,7 +117,7 @@ None
 Record questions that require a deliberate architectural/product decision.
 
 * [ ] Finalize application name
-* [ ] Finalize visual design direction
+* [x] Finalize visual design direction — Things 3 × Linear (coral accent, zinc neutrals, Geist type, Phosphor icons)
 * [x] Decide initial task status model — To do / Doing / Done
 * [x] Decide initial project status model — Active / On hold / Completed /
   Archived
