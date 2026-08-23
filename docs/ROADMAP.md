@@ -90,7 +90,7 @@ Make the application useful every day.
 * [x] Search
 * [x] Filtering
 * [x] Sorting
-* [ ] Tags
+* [x] Tags
 * [ ] Subtasks
 * [x] Quick task creation
 * [ ] Keyboard shortcuts

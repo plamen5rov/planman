@@ -1,8 +1,9 @@
 import type {
   CreateProjectInput,
+  CreateTagInput,
   CreateTaskInput,
 } from '../domain/entities'
-import type { Project, Task } from '../types/domain'
+import type { Project, Tag, Task } from '../types/domain'
 
 export interface ProjectRepository {
   getAll(): Promise<Project[]>
@@ -13,6 +14,17 @@ export interface ProjectRepository {
     patch: Partial<Omit<Project, 'id' | 'createdAt'>>,
   ): Promise<Project>
   archive(id: string): Promise<Project>
+  delete(id: string): Promise<void>
+}
+
+export interface TagRepository {
+  getAll(): Promise<Tag[]>
+  getById(id: string): Promise<Tag | undefined>
+  create(input: CreateTagInput): Promise<Tag>
+  update(
+    id: string,
+    patch: Partial<Omit<Tag, 'id' | 'createdAt'>>,
+  ): Promise<Tag>
   delete(id: string): Promise<void>
 }
 

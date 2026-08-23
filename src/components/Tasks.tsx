@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DexieTaskRepository } from '../repositories/task-repository'
+import { DexieTagRepository } from '../repositories/tag-repository'
 import { db } from '../db/database'
-import type { Task, TaskStatus, TaskPriority } from '../types/domain'
+import type { Tag, Task, TaskStatus, TaskPriority } from '../types/domain'
 
-const repo = new DexieTaskRepository(db)
+const taskRepo = new DexieTaskRepository(db)
+const tagRepo = new DexieTagRepository(db)
 
 const STATUS_OPTIONS: Array<{ value: TaskStatus | 'all'; label: string }> = [
   { value: 'all', label: 'All' },
@@ -39,17 +41,23 @@ const SORT_OPTIONS: Array<{ value: SortKey; label: string }> = [
 
 export function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [tags, setTags] = useState<Tag[]>([])
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState<TaskStatus | 'all'>('all')
   const [priorityFilter, setPriorityFilter] = useState<TaskPriority | 'all'>('all')
+  const [tagFilter, setTagFilter] = useState<string>('all')
   const [sortKey, setSortKey] = useState<SortKey>('created')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const reload = () => repo.getAll().then(setTasks)
+  const reload = async () => {
+    const [t, tg] = await Promise.all([taskRepo.getAll(), tagRepo.getAll()])
+    setTasks(t)
+    setTags(tg)
+  }
 
   useEffect(() => {
     reload()
@@ -57,10 +65,16 @@ export function Tasks() {
       .finally(() => setLoading(false))
   }, [])
 
+  const tagMap = useMemo(() => {
+    const m = new Map<string, Tag>()
+    for (const t of tags) m.set(t.id, t)
+    return m
+  }, [tags])
+
   const handleAdd = async () => {
     if (!newTaskTitle.trim()) return
     try {
-      await repo.create({ title: newTaskTitle })
+      await taskRepo.create({ title: newTaskTitle })
       setNewTaskTitle('')
       await reload()
     } catch (e: unknown) {
@@ -71,9 +85,9 @@ export function Tasks() {
   const handleToggle = async (task: Task) => {
     try {
       if (task.status === 'done') {
-        await repo.update(task.id, { status: 'todo' })
+        await taskRepo.update(task.id, { status: 'todo' })
       } else {
-        await repo.complete(task.id)
+        await taskRepo.complete(task.id)
       }
       await reload()
     } catch (e: unknown) {
@@ -83,7 +97,7 @@ export function Tasks() {
 
   const handleDelete = async (id: string) => {
     try {
-      await repo.delete(id)
+      await taskRepo.delete(id)
       await reload()
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Failed to delete')
@@ -98,7 +112,7 @@ export function Tasks() {
   const saveEdit = async (id: string) => {
     if (!editTitle.trim()) return
     try {
-      await repo.update(id, { title: editTitle })
+      await taskRepo.update(id, { title: editTitle })
       setEditingId(null)
       await reload()
     } catch (e: unknown) {
@@ -113,7 +127,8 @@ export function Tasks() {
       const matchesSearch = !searchQuery || t.title.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesStatus = statusFilter === 'all' || t.status === statusFilter
       const matchesPriority = priorityFilter === 'all' || t.priority === priorityFilter
-      return matchesSearch && matchesStatus && matchesPriority
+      const matchesTag = tagFilter === 'all' || t.tagIds.includes(tagFilter)
+      return matchesSearch && matchesStatus && matchesPriority && matchesTag
     })
     result.sort((a, b) => {
       switch (sortKey) {
@@ -125,7 +140,7 @@ export function Tasks() {
       }
     })
     return result
-  }, [tasks, searchQuery, statusFilter, priorityFilter, sortKey])
+  }, [tasks, searchQuery, statusFilter, priorityFilter, tagFilter, sortKey])
 
   if (loading) return <p className="caption">Loading...</p>
   if (error) return <p className="caption">{error}</p>
@@ -164,6 +179,17 @@ export function Tasks() {
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
+        {tags.length > 0 && (
+          <select
+            value={tagFilter}
+            onChange={e => setTagFilter(e.target.value)}
+          >
+            <option value="all">All tags</option>
+            {tags.map(tag => (
+              <option key={tag.id} value={tag.id}>{tag.name}</option>
+            ))}
+          </select>
+        )}
       </div>
       <div className="card">
         {filtered.map((task) => (
@@ -187,12 +213,19 @@ export function Tasks() {
                 autoFocus
               />
             ) : (
-              <span
-                onDoubleClick={() => startEdit(task)}
-                style={{ textDecoration: task.status === 'done' ? 'line-through' : undefined }}
-              >
-                {task.title}
-              </span>
+              <>
+                <span
+                  onDoubleClick={() => startEdit(task)}
+                  style={{ textDecoration: task.status === 'done' ? 'line-through' : undefined }}
+                >
+                  {task.title}
+                </span>
+                {task.tagIds.length > 0 && (
+                  <span className="caption">
+                    {task.tagIds.map(id => tagMap.get(id)?.name).filter(Boolean).join(', ')}
+                  </span>
+                )}
+              </>
             )}
             <button
               type="button"

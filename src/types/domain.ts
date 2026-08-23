@@ -18,6 +18,11 @@ export interface Project extends Entity {
   icon?: string
 }
 
+export interface Tag extends Entity {
+  name: string
+  color?: string
+}
+
 export interface Task extends Entity {
   title: string
   description?: string
@@ -27,4 +32,5 @@ export interface Task extends Entity {
   dueDate?: string
   completedAt?: string
   order: number
+  tagIds: string[]
 }

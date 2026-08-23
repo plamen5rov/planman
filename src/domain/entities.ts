@@ -1,5 +1,6 @@
 import type {
   Project,
+  Tag,
   Task,
   TaskPriority,
   TaskStatus,
@@ -47,6 +48,7 @@ export interface CreateTaskInput {
   priority?: TaskPriority
   dueDate?: string
   order?: number
+  tagIds?: string[]
 }
 
 export function createTask(input: CreateTaskInput): Task {
@@ -57,6 +59,7 @@ export function createTask(input: CreateTaskInput): Task {
     status: 'todo',
     priority: input.priority ?? 'none',
     order: input.order ?? 0,
+    tagIds: input.tagIds ?? [],
     createdAt: now,
     updatedAt: now,
     ...(input.description !== undefined && {
@@ -64,6 +67,22 @@ export function createTask(input: CreateTaskInput): Task {
     }),
     ...(input.projectId !== undefined && { projectId: input.projectId }),
     ...(input.dueDate !== undefined && { dueDate: input.dueDate }),
+  }
+}
+
+export interface CreateTagInput {
+  name: string
+  color?: string
+}
+
+export function createTag(input: CreateTagInput): Tag {
+  const now = nowIso()
+  return {
+    id: crypto.randomUUID(),
+    name: requireText(input.name, 'Tag name'),
+    createdAt: now,
+    updatedAt: now,
+    ...(input.color !== undefined && { color: input.color }),
   }
 }
 
