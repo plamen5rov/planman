@@ -1,18 +1,69 @@
 :root {
-  --text: #4b4650;
-  --text-h: #08060d;
-  --bg: #ffffff;
-  --bg-raised: #faf9fb;
-  --border: #e5e4e7;
-  --accent: #7c3aed;
+  --color-text: #4b4650;
+  --color-text-subtle: #6b6a7a;
+  --color-bg: #ffffff;
+  --color-bg-raised: #faf9fb;
+  --color-border: #e5e4e7;
+  --color-accent: #7c3aed;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
 
   color-scheme: light dark;
-  font: 16px/150% var(--sans);
-  color: var(--text);
-  background: var(--bg);
+  font: 16px/150% var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Typography utilities */
+.h1 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin: 0 0 var(--space-sm); color: var(--color-text-subtle) }
+.h2 { font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin: 0 0 var(--space-sm); color: var(--color-text-subtle) }
+.body { font-size: var(--font-size-md); line-height: 1.5; color: var(--color-text) }
+.caption { font-size: var(--font-size-sm); color: var(--color-text-subtle) }
+
+/* Spacing utilities */
+.mt-xs { margin-top: var(--space-xs) }
+.mt-sm { margin-top: var(--space-sm) }
+.mt-md { margin-top: var(--space-md) }
+.mt-lg { margin-top: var(--space-lg) }
+.mb-xs { margin-bottom: var(--space-xs) }
+.mb-sm { margin-bottom: var(--space-sm) }
+.mb-md { margin-bottom: var(--space-md) }
+.mb-lg { margin-bottom: var(--space-lg) }
+
+/* Component containers */
+.card {
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-md);
+}
+
+/* Task/Note list items */
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 6px;
+  margin-bottom: var(--space-xs);
+  background: var(--color-bg);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -63,9 +63,9 @@ See:
 
 ### P2 — Normal
 
-* [ ] Establish initial visual design
-* [ ] Define typography
-* [ ] Define spacing system
+* [x] Establish initial visual design
+* [x] Define typography
+* [x] Define spacing system
 * [ ] Define basic component conventions
 * [ ] Document architecture decisions
 
