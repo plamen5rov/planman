@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DexieTaskRepository } from '../repositories/task-repository'
 import { DexieTagRepository } from '../repositories/tag-repository'
+import { DexieSubtaskRepository } from '../repositories/subtask-repository'
 import { db } from '../db/database'
-import type { Tag, Task, TaskStatus, TaskPriority } from '../types/domain'
+import type { Subtask, Tag, Task, TaskStatus, TaskPriority } from '../types/domain'
 
 const taskRepo = new DexieTaskRepository(db)
 const tagRepo = new DexieTagRepository(db)
+const subtaskRepo = new DexieSubtaskRepository(db)
 
 const STATUS_OPTIONS: Array<{ value: TaskStatus | 'all'; label: string }> = [
   { value: 'all', label: 'All' },
@@ -42,9 +44,12 @@ const SORT_OPTIONS: Array<{ value: SortKey; label: string }> = [
 export function Tasks() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [tags, setTags] = useState<Tag[]>([])
+  const [subtasksByTask, setSubtasksByTask] = useState<Map<string, Subtask[]>>(new Map())
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [newSubtaskTitle, setNewSubtaskTitle] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState<TaskStatus | 'all'>('all')
   const [priorityFilter, setPriorityFilter] = useState<TaskPriority | 'all'>('all')
@@ -57,6 +62,12 @@ export function Tasks() {
     const [t, tg] = await Promise.all([taskRepo.getAll(), tagRepo.getAll()])
     setTasks(t)
     setTags(tg)
+    const subMap = new Map<string, Subtask[]>()
+    await Promise.all(t.map(async (task) => {
+      const subs = await subtaskRepo.getByTaskId(task.id)
+      subMap.set(task.id, subs)
+    }))
+    setSubtasksByTask(subMap)
   }
 
   useEffect(() => {
@@ -121,6 +132,35 @@ export function Tasks() {
   }
 
   const cancelEdit = () => setEditingId(null)
+
+  const handleAddSubtask = async (taskId: string) => {
+    if (!newSubtaskTitle.trim()) return
+    try {
+      await subtaskRepo.create({ taskId, title: newSubtaskTitle })
+      setNewSubtaskTitle('')
+      await reload()
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to add subtask')
+    }
+  }
+
+  const handleToggleSubtask = async (subtask: Subtask) => {
+    try {
+      await subtaskRepo.update(subtask.id, { completed: !subtask.completed })
+      await reload()
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to toggle subtask')
+    }
+  }
+
+  const handleDeleteSubtask = async (id: string) => {
+    try {
+      await subtaskRepo.delete(id)
+      await reload()
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to delete subtask')
+    }
+  }
 
   const filtered = useMemo(() => {
     const result = tasks.filter(t => {
@@ -192,50 +232,114 @@ export function Tasks() {
         )}
       </div>
       <div className="card">
-        {filtered.map((task) => (
-          <div key={task.id} className="list-item">
-            <button
-              type="button"
-              onClick={() => handleToggle(task)}
-              aria-label={task.status === 'done' ? 'Mark incomplete' : 'Mark complete'}
-            >
-              {task.status === 'done' ? '✓' : '○'}
-            </button>
-            {editingId === task.id ? (
-              <input
-                value={editTitle}
-                onChange={e => setEditTitle(e.target.value)}
-                onBlur={() => saveEdit(task.id)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') saveEdit(task.id)
-                  if (e.key === 'Escape') cancelEdit()
-                }}
-                autoFocus
-              />
-            ) : (
-              <>
-                <span
-                  onDoubleClick={() => startEdit(task)}
-                  style={{ textDecoration: task.status === 'done' ? 'line-through' : undefined }}
+        {filtered.map((task) => {
+          const subs = subtasksByTask.get(task.id) ?? []
+          const isExpanded = expandedId === task.id
+          return (
+            <div key={task.id} style={{ marginBottom: 8 }}>
+              <div className="list-item">
+                <button
+                  type="button"
+                  onClick={() => handleToggle(task)}
+                  aria-label={task.status === 'done' ? 'Mark incomplete' : 'Mark complete'}
                 >
-                  {task.title}
-                </span>
-                {task.tagIds.length > 0 && (
-                  <span className="caption">
-                    {task.tagIds.map(id => tagMap.get(id)?.name).filter(Boolean).join(', ')}
-                  </span>
+                  {task.status === 'done' ? '✓' : '○'}
+                </button>
+                {editingId === task.id ? (
+                  <input
+                    value={editTitle}
+                    onChange={e => setEditTitle(e.target.value)}
+                    onBlur={() => saveEdit(task.id)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') saveEdit(task.id)
+                      if (e.key === 'Escape') cancelEdit()
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <>
+                    <span
+                      onDoubleClick={() => startEdit(task)}
+                      style={{ textDecoration: task.status === 'done' ? 'line-through' : undefined }}
+                    >
+                      {task.title}
+                    </span>
+                    {task.tagIds.length > 0 && (
+                      <span className="caption">
+                        {task.tagIds.map(id => tagMap.get(id)?.name).filter(Boolean).join(', ')}
+                      </span>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-            <button
-              type="button"
-              onClick={() => handleDelete(task.id)}
-              aria-label="Delete task"
-            >
-              ×
-            </button>
-          </div>
-        ))}
+                {subs.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setExpandedId(isExpanded ? null : task.id)}
+                    className="caption"
+                  >
+                    {isExpanded ? '▾' : '▸'} {subs.filter(s => s.completed).length}/{subs.length}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setExpandedId(isExpanded ? null : task.id)}
+                  className="caption"
+                  aria-label="Toggle subtasks"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(task.id)}
+                  aria-label="Delete task"
+                >
+                  ×
+                </button>
+              </div>
+              {isExpanded && (
+                <div style={{ marginLeft: 32 }}>
+                  {subs.map((sub) => (
+                    <div key={sub.id} className="list-item">
+                      <button
+                        type="button"
+                        onClick={() => handleToggleSubtask(sub)}
+                        aria-label={sub.completed ? 'Mark incomplete' : 'Mark complete'}
+                      >
+                        {sub.completed ? '✓' : '○'}
+                      </button>
+                      <span style={{ textDecoration: sub.completed ? 'line-through' : undefined }}>
+                        {sub.title}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteSubtask(sub.id)}
+                        aria-label="Delete subtask"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  <div style={{ display: 'flex', gap: 4, padding: '4px 0' }}>
+                    <input
+                      value={newSubtaskTitle}
+                      onChange={e => setNewSubtaskTitle(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') handleAddSubtask(task.id) }}
+                      placeholder="New subtask..."
+                      style={{ flex: 1 }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleAddSubtask(task.id)}
+                      disabled={!newSubtaskTitle.trim()}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        })}
         {filtered.length === 0 && (
           <p className="caption">
             {searchQuery || statusFilter !== 'all' || priorityFilter !== 'all'

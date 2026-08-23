@@ -1,5 +1,6 @@
 import type {
   Project,
+  Subtask,
   Tag,
   Task,
   TaskPriority,
@@ -83,6 +84,25 @@ export function createTag(input: CreateTagInput): Tag {
     createdAt: now,
     updatedAt: now,
     ...(input.color !== undefined && { color: input.color }),
+  }
+}
+
+export interface CreateSubtaskInput {
+  taskId: string
+  title: string
+  order?: number
+}
+
+export function createSubtask(input: CreateSubtaskInput): Subtask {
+  const now = nowIso()
+  return {
+    id: crypto.randomUUID(),
+    taskId: input.taskId,
+    title: requireText(input.title, 'Subtask title'),
+    completed: false,
+    order: input.order ?? 0,
+    createdAt: now,
+    updatedAt: now,
   }
 }
 

@@ -1,9 +1,10 @@
 import type {
   CreateProjectInput,
+  CreateSubtaskInput,
   CreateTagInput,
   CreateTaskInput,
 } from '../domain/entities'
-import type { Project, Tag, Task } from '../types/domain'
+import type { Project, Subtask, Tag, Task } from '../types/domain'
 
 export interface ProjectRepository {
   getAll(): Promise<Project[]>
@@ -25,6 +26,16 @@ export interface TagRepository {
     id: string,
     patch: Partial<Omit<Tag, 'id' | 'createdAt'>>,
   ): Promise<Tag>
+  delete(id: string): Promise<void>
+}
+
+export interface SubtaskRepository {
+  getByTaskId(taskId: string): Promise<Subtask[]>
+  create(input: CreateSubtaskInput): Promise<Subtask>
+  update(
+    id: string,
+    patch: Partial<Omit<Subtask, 'id' | 'createdAt'>>,
+  ): Promise<Subtask>
   delete(id: string): Promise<void>
 }
 

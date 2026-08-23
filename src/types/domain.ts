@@ -23,6 +23,13 @@ export interface Tag extends Entity {
   color?: string
 }
 
+export interface Subtask extends Entity {
+  taskId: string
+  title: string
+  completed: boolean
+  order: number
+}
+
 export interface Task extends Entity {
   title: string
   description?: string
